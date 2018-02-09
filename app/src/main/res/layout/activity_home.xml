@@ -90,8 +90,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/normalbutton"
                 android:drawableStart="@drawable/map"
+                android:onClick="startMap"
                 android:paddingLeft="10dp"
-                android:text="Nearby" />
+                android:text="@string/nearby_send" />
 
             <Button
                 android:id="@+id/buttonDeals"
