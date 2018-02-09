@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">QuickBites</string>
+    <string name="defaultStoreName">Default Name</string>
+    <string name="defaultStoreDescription">Possibly the worlds best burger. I\'ve had burgers in London, New York, Rome, Paris and Barcelona but no where touches my local favourite.</string>
+    <string name="defaultHappy">1554</string>
+    <string name="defaultNeutral">148</string>
+    <string name="defaultSad">12</string>
+</resources>
