@@ -1,10 +1,12 @@
 package com.example.farrej10.quickbites;
 
-import android.annotation.SuppressLint;
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.view.View;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -23,5 +25,12 @@ public class HomeActivity extends AppCompatActivity {
 
         TextView happyRate = findViewById(R.id.happyNum);
         happyRate.setText(Integer.toString(burger.getRating()), TextView.BufferType.NORMAL);
+    }
+
+    public void startMap(View view){
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+
+
     }
 }
