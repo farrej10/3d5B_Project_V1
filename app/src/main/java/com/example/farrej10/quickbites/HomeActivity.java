@@ -54,6 +54,9 @@ public class HomeActivity extends AppCompatActivity {
         String restNeuR = ratingNeutral.getText().toString();
         String restSadR = ratingSad.getText().toString();
 
+
+        startActivity(restuarantDetailed);
+
     }
 
 

@@ -145,29 +145,36 @@
         android:id="@+id/restaurantInfoSection1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
 
+        android:clickable="true"
+        android:onClick="startMap"
+        android:orientation="vertical"
         android:paddingTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/buttonBar">
-        tools:onClick="openDetailed">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true"
+            android:onClick="startMap">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="openDetailed"
                 app:srcCompat="@drawable/placeholder" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:onClick="openDetailed"
                 android:orientation="vertical">
 
                 <TextView
@@ -184,6 +191,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
+                    android:clickable="true"
+                    android:onClick="openDetailed"
                     android:text="@string/defaultStoreDescription" />
 
                 <LinearLayout
