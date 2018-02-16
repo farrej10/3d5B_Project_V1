@@ -37,6 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public void openDetailed(View view)
     {
         Intent restuarantDetailed = new Intent(this, detailedRestaurant.class);
@@ -53,7 +55,6 @@ public class HomeActivity extends AppCompatActivity {
         String restSadR = ratingSad.getText().toString();
 
     }
-
 
 
 }
