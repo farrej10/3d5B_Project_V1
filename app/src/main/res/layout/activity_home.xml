@@ -28,17 +28,18 @@
 
             <ImageButton
                 android:id="@+id/homeLogoButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginEnd="50dp"
                 android:layout_marginStart="5dp"
                 android:background="@drawable/homebutton"
                 android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:scaleX="2"
+                android:scaleY="2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/editText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/placeholder" />
+                app:srcCompat="@drawable/logonobackground" />
 
             <EditText
                 android:id="@+id/editText"
@@ -138,7 +139,7 @@
 
 
     <LinearLayout
-        android:id="@+id/resturantInfoSection1"
+        android:id="@+id/restaurantInfoSection1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
