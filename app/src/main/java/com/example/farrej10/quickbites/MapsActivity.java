@@ -1,5 +1,6 @@
 package com.example.farrej10.quickbites;
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -44,17 +45,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleApiClient client;
     private LocationRequest locationRequest;
     private Location lastLocation;
+
     private Marker currentLocationMarker;
+    private Marker currentRestaurant[];
     public static final int REQUEST_LOCATION_CODE = 99;
-    double latitude, longitude;
+    private Location tcd;
+
+    private static final double tcdLat = 53.3438;
+    private static final double tcdLng = -6.2548;
+
+    public void showMyAlert(String s){
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder.setCancelable(true);
+        alertBuilder.setTitle(s);
+        alertBuilder.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        showMyAlert("Got to onCreate");
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_maps);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
+            showMyAlert("checking permissions now");
             checkLocationPermission();
         }
 
@@ -101,7 +118,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        tcd = new Location("");
+
+        tcd.setLatitude(tcdLat);
+        tcd.setLongitude(tcdLng);
+
+
+        LatLng trinity = new LatLng(tcdLat,tcdLng);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(trinity,15f));
+        currentRestaurant = new Marker[5];
+        currentRestaurant[0] = null;
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
@@ -119,12 +147,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void mapSearchOnClick(View view)
     {
+        mMap.clear();
+
         if(view.getId() == R.id.mapSearchButton)
         {
             EditText sentLocation = (EditText)findViewById(R.id.editText);
             String searchedLocation = sentLocation.getText().toString();
             List<Address> addressList = null;
             MarkerOptions restaurantTags = new MarkerOptions();
+
+
+
+            if(currentRestaurant[0] != null)
+            {
+                for (int j = 0; j < 5; j++) {
+                    if(currentRestaurant[j] != null) currentRestaurant[j].remove();
+                }
+            }
 
             if( !searchedLocation.equals(""))
             {
@@ -134,16 +173,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                LatLng restaurantLatLng;
+                int i = 0;
+                do{
 
-                for(int i = 0; i < addressList.size() ; i++){
                     Address myAddress = addressList.get(i);
-                    LatLng latLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
-                    restaurantTags.position(latLng);
+                    restaurantLatLng = new LatLng(myAddress.getLatitude(), myAddress.getLongitude());
+                    restaurantTags.position(restaurantLatLng);
                     restaurantTags.title("Here");
-                    mMap.addMarker(restaurantTags);
+                    currentRestaurant[i] = mMap.addMarker(restaurantTags);
+                    i++;
+
+                }while(i < addressList.size());
+                if(currentRestaurant == null) {
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(restaurantLatLng, 15f));
                 }
             }
+
         }
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -159,8 +207,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+        double longitude = location.getLongitude();
 
         lastLocation = location;
 
@@ -169,7 +217,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             currentLocationMarker.remove();
         }
         Log.d("lat = ",""+latitude);
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng latLng = new LatLng(latitude, longitude);
         MarkerOptions markerOptions =new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Current Location");
@@ -194,15 +242,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
             LocationServices.FusedLocationApi.requestLocationUpdates(client, locationRequest, this);
         }
     }
 
     public boolean checkLocationPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
             if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
             }
             else
