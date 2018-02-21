@@ -183,7 +183,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@string/defaultStoreName"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:onClick="openDetailed" />
 
                 <TextView
                     android:id="@+id/description"
@@ -269,7 +270,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/placeholder" />
+                app:srcCompat="@drawable/placeholder"
+                android:onClick="openDetailed" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -283,6 +285,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="@string/defaultStoreName"
+                    android:onClick="openDetailed"
                     android:textSize="20sp" />
 
                 <TextView
@@ -291,6 +294,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="5dp"
+                    android:onClick="openDetailed"
                     android:text="@string/defaultStoreDescription" />
 
                 <LinearLayout

@@ -11,7 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.view.View;
 
+import static java.sql.Types.NULL;
+
 public class HomeActivity extends AppCompatActivity {
+
+    Restaurant burger = new Restaurant("Burger Place ", "This Burger place is the home of the burger" , 10, 5, 1, 53.343247, -6.254476);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -19,16 +23,26 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Restaurant burger = new Restaurant("Burger Place ", "This Burger place is the home of the burger" , 10);
+
 
         TextView title = findViewById(R.id.Title);
         title.setText(burger.getName(), TextView.BufferType.NORMAL);
 
         TextView description = findViewById(R.id.description);
-        description.setText(burger.getDescipt(), TextView.BufferType.NORMAL);
+        description.setText(burger.getDescrip(), TextView.BufferType.NORMAL);
 
         TextView happyRate = findViewById(R.id.happyNum);
-        happyRate.setText(Integer.toString(burger.getRating()), TextView.BufferType.NORMAL);
+        String Happyrating = Integer.toString(burger.getRating(0));
+        happyRate.setText(Happyrating, TextView.BufferType.NORMAL);
+
+        TextView neutralRate = findViewById(R.id.neutralNum);
+        String Neurating = Integer.toString(burger.getRating(1));
+        neutralRate.setText(Neurating, TextView.BufferType.NORMAL);
+
+        TextView sadRate = findViewById(R.id.sadNum);
+        String Sadrating = Integer.toString(burger.getRating(2));
+        sadRate.setText(Sadrating, TextView.BufferType.NORMAL);
+
     }
 
     public void startMap(View view)
@@ -41,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void openDetailed(View view)
     {
+
         Intent restuarantDetailed = new Intent(this, detailedRestaurant.class);
         TextView title = findViewById(R.id.Title);
         TextView description = findViewById(R.id.description);
@@ -50,10 +65,27 @@ public class HomeActivity extends AppCompatActivity {
 
         String restTitle = title.getText().toString();
         String restDescription = description.getText().toString();
-        String restHappyR = ratingHappy.getText().toString();
-        String restNeuR = ratingNeutral.getText().toString();
-        String restSadR = ratingSad.getText().toString();
+        String ratingString = ratingHappy.getText().toString();
+        int intHappyR = Integer.parseInt(ratingString);
+        if( intHappyR == NULL)
+        {
+            intHappyR = -1;
+        }
+        ratingString = ratingNeutral.getText().toString();
+        int intNeuR = Integer.parseInt(ratingString);
+        if( intNeuR == NULL)
+        {
+            intNeuR = -1;
+        }
+        ratingString = ratingSad.getText().toString();
+        int intSadR = Integer.parseInt(ratingString);
+        if( intSadR == NULL)
+        {
+            intSadR = -1;
+        }
 
+        Restaurant test = new Restaurant(restTitle, restDescription, intHappyR, intNeuR, intSadR, 53.343247, -6.254476);
+        restuarantDetailed.putExtra("rest", test);
 
         startActivity(restuarantDetailed);
 
