@@ -64,14 +64,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        showMyAlert("Got to onCreate");
+        //showMyAlert("Got to onCreate");
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_maps);
 
-        //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
-            showMyAlert("checking permissions now");
+            //showMyAlert("checking permissions now");
             checkLocationPermission();
         }
 
@@ -182,12 +182,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     restaurantTags.position(restaurantLatLng);
                     restaurantTags.title("Here");
                     currentRestaurant[i] = mMap.addMarker(restaurantTags);
+                    if(currentRestaurant != null && i == 0) {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(restaurantLatLng, 15f));
+                    }
                     i++;
 
                 }while(i < addressList.size());
-                if(currentRestaurant == null) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(restaurantLatLng, 15f));
-                }
+
             }
 
         }
@@ -203,7 +204,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         client.connect();
     }
-
 
     @Override
     public void onLocationChanged(Location location) {
@@ -225,8 +225,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         currentLocationMarker = mMap.addMarker(markerOptions);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f));
+
 
         if(client != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
