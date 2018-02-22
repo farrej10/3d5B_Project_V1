@@ -1,6 +1,7 @@
 package com.example.farrej10.quickbites;
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -80,6 +81,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        Intent i = getIntent();
+
+        ListofRestaurant Restaurant = (ListofRestaurant)i.getSerializableExtra("List");
+        //Restaurant.list.get(0).getLatitude();
     }
 
     @Override

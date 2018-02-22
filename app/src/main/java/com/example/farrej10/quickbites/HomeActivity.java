@@ -19,71 +19,70 @@ import static java.sql.Types.NULL;
 public class HomeActivity extends AppCompatActivity {
 
     Restaurant burger = new Restaurant("Burger Place ", "This Burger place is the home of the burger" , 10, 5, 1, 53.343247, -6.254476);
-
+    //List<Restaurant> listofRestaurants = new ArrayList<>();
+    ListofRestaurant listofRestaurants = new ListofRestaurant();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        List<Restaurant> listofRestaurants = new ArrayList<>();
+
         csvParser parser = new csvParser();
-        parser.parseToList(listofRestaurants, this);
-
-
+        parser.parseToList(listofRestaurants.list, this);
 
         TextView title = findViewById(R.id.Title);
-        title.setText(listofRestaurants.get(0).getName(), TextView.BufferType.NORMAL);
+        title.setText(listofRestaurants.list.get(0).getName(), TextView.BufferType.NORMAL);
 
         TextView description = findViewById(R.id.description);
-        description.setText(listofRestaurants.get(0).getDescrip(), TextView.BufferType.NORMAL);
+        description.setText(listofRestaurants.list.get(0).getDescrip(), TextView.BufferType.NORMAL);
 
         TextView happyRate = findViewById(R.id.happyNum);
-        String Happyrating = Integer.toString(listofRestaurants.get(0).getRating(0));
+        String Happyrating = Integer.toString(listofRestaurants.list.get(0).getRating(0));
         happyRate.setText(Happyrating, TextView.BufferType.NORMAL);
 
         TextView neutralRate = findViewById(R.id.neutralNum);
-        String Neurating = Integer.toString(listofRestaurants.get(0).getRating(1));
+        String Neurating = Integer.toString(listofRestaurants.list.get(0).getRating(1));
         neutralRate.setText(Neurating, TextView.BufferType.NORMAL);
 
         TextView sadRate = findViewById(R.id.sadNum);
-        String Sadrating = Integer.toString(listofRestaurants.get(0).getRating(2));
+        String Sadrating = Integer.toString(listofRestaurants.list.get(0).getRating(2));
         sadRate.setText(Sadrating, TextView.BufferType.NORMAL);
 
         title = findViewById(R.id.Title2);
-        title.setText(listofRestaurants.get(1).getName(), TextView.BufferType.NORMAL);
+        title.setText(listofRestaurants.list.get(1).getName(), TextView.BufferType.NORMAL);
 
         description = findViewById(R.id.description2);
-        description.setText(listofRestaurants.get(1).getDescrip(), TextView.BufferType.NORMAL);
+        description.setText(listofRestaurants.list.get(1).getDescrip(), TextView.BufferType.NORMAL);
 
         happyRate = findViewById(R.id.happyNum2);
-        Happyrating = Integer.toString(listofRestaurants.get(1).getRating(0));
+        Happyrating = Integer.toString(listofRestaurants.list.get(1).getRating(0));
         happyRate.setText(Happyrating, TextView.BufferType.NORMAL);
 
         neutralRate = findViewById(R.id.neutralNum2);
-        Neurating = Integer.toString(listofRestaurants.get(1).getRating(1));
+        Neurating = Integer.toString(listofRestaurants.list.get(1).getRating(1));
         neutralRate.setText(Neurating, TextView.BufferType.NORMAL);
 
         sadRate = findViewById(R.id.sadNum2);
-        Sadrating = Integer.toString(listofRestaurants.get(1).getRating(2));
+        Sadrating = Integer.toString(listofRestaurants.list.get(1).getRating(2));
         sadRate.setText(Sadrating, TextView.BufferType.NORMAL);
 
         title = findViewById(R.id.Title3);
-        title.setText(listofRestaurants.get(2).getName(), TextView.BufferType.NORMAL);
+        title.setText(listofRestaurants.list.get(2).getName(), TextView.BufferType.NORMAL);
 
         description = findViewById(R.id.description3);
-        description.setText(listofRestaurants.get(2).getDescrip(), TextView.BufferType.NORMAL);
+        description.setText(listofRestaurants.list.get(2).getDescrip(), TextView.BufferType.NORMAL);
 
         happyRate = findViewById(R.id.happyNum3);
-        Happyrating = Integer.toString(listofRestaurants.get(2).getRating(0));
+        Happyrating = Integer.toString(listofRestaurants.list.get(2).getRating(0));
         happyRate.setText(Happyrating, TextView.BufferType.NORMAL);
 
         neutralRate = findViewById(R.id.neutralNum3);
-        Neurating = Integer.toString(listofRestaurants.get(2).getRating(1));
+        Neurating = Integer.toString(listofRestaurants.list.get(2).getRating(1));
         neutralRate.setText(Neurating, TextView.BufferType.NORMAL);
 
         sadRate = findViewById(R.id.sadNum3);
-        Sadrating = Integer.toString(listofRestaurants.get(2).getRating(2));
+        Sadrating = Integer.toString(listofRestaurants.list.get(2).getRating(2));
         sadRate.setText(Sadrating, TextView.BufferType.NORMAL);
 
     }
@@ -91,6 +90,7 @@ public class HomeActivity extends AppCompatActivity {
     public void startMap(View view)
     {
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("List", listofRestaurants);
         startActivity(intent);
     }
 
