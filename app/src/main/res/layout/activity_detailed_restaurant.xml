@@ -80,7 +80,7 @@
         app:layout_constraintEnd_toStartOf="@+id/button5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeBar"
-        app:srcCompat="@drawable/placeholder" />
+        android:src="@drawable/sushi" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -198,5 +198,5 @@
         android:textSize="10sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
-  
+
 </android.support.constraint.ConstraintLayout>
