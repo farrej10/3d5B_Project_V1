@@ -24,6 +24,19 @@ public class Restaurant implements Serializable{
     public void setLatitude (double Lat) { Latitude = Lat ; }
     public void setLongitude(double Long) { Longitude = Long; }
 
+    public Restaurant()
+    {
+        name = "";
+        descrip = "";
+        Latitude = 0.0;
+        Longitude = 0.0;
+        for (int i = 0; i < 3; i++)
+        {
+            rating[i] = 0;
+        }
+
+    }
+
     public Restaurant(String n, String d, int happy, int neutral, int sad, double Long, double Lat )
     {
         setName(n);

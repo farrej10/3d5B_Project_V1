@@ -1,8 +1,11 @@
 package com.example.farrej10.quickbites;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -18,7 +21,6 @@ public class detailedRestaurant extends AppCompatActivity {
         Restaurant Rest = (Restaurant)i.getSerializableExtra("rest");
 
 
-
         TextView bxTitle = (TextView)findViewById(R.id.TitleBox);
         TextView bxDescrip = (TextView)findViewById(R.id.DescripBox);
         TextView bxRatingHappy = (TextView)findViewById(R.id.happyNum);
@@ -31,6 +33,15 @@ public class detailedRestaurant extends AppCompatActivity {
         bxRatingNeu.setText(Integer.toString(Rest.getRating(1)), TextView.BufferType.NORMAL);
         bxRatingSad.setText(Integer.toString(Rest.getRating(2)), TextView.BufferType.NORMAL);
 
+        String a = getApplicationContext().getFilesDir().toString();
+
 
     }
+
+    public void returnHome (View view)
+    {
+        Intent Home = new Intent(this, HomeActivity.class);
+        startActivity(Home);
+    }
+
 }

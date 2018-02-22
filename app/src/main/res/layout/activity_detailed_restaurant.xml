@@ -40,7 +40,9 @@
                 app:layout_constraintEnd_toStartOf="@+id/editText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logonobackground" />
+                app:srcCompat="@drawable/logonobackground"
+                android:clickable="true"
+                android:onClick="returnHome" />
 
             <EditText
                 android:id="@+id/editText"
@@ -73,13 +75,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="245dp"
+        android:layout_width="0dp"
         android:layout_height="160dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="28dp"
         android:layout_weight="1"
-        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintEnd_toStartOf="@+id/button5"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeBar"
         app:srcCompat="@drawable/placeholder" />
 
@@ -165,39 +167,39 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="92dp"
+        android:layout_width="112dp"
         android:layout_height="48dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="28dp"
-        android:text="MAP"
+        android:background="@color/colorPrimary"
+        android:drawableStart="@drawable/dealicons"
+        android:text="Offers"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/homeBar" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="92dp"
+        android:layout_width="112dp"
         android:layout_height="48dp"
         android:layout_marginRight="16dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text="Reservations"
-        android:textSize="8sp"
+        android:background="@color/colorPrimary"
+        android:drawableStart="@drawable/map"
+        android:text="Map"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/button5" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="92dp"
+        android:layout_width="112dp"
         android:layout_height="48dp"
         android:layout_marginRight="16dp"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
-        android:text="Offers"
+        android:background="@color/colorPrimary"
+        android:drawableStart="@drawable/star"
+        android:text="Reservations"
+        android:textSize="10sp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 </android.support.constraint.ConstraintLayout>
