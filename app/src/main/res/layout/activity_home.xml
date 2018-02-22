@@ -16,7 +16,9 @@
         android:layout_marginBottom="5dp"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBar">
+        app:layout_constraintBottom_toTopOf="@+id/buttonBar"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/linearLayout"
@@ -36,11 +38,12 @@
                 android:scaleType="centerCrop"
                 android:scaleX="2.2"
                 android:scaleY="2.2"
+                android:src="@drawable/logonobackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/editText"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/logonobackground" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/editText"
@@ -79,6 +82,8 @@
         android:paddingTop="15dp"
         app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/homeBar">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -148,9 +153,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-
             android:layout_height="match_parent"
-
             android:orientation="vertical">
 
             <LinearLayout
@@ -362,7 +365,6 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/restaurantInfoSection1">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -666,7 +668,6 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-
                         <TextView
                             android:id="@+id/Title2"
                             android:layout_width="match_parent"
@@ -718,7 +719,6 @@
                                 android:ems="10"
                                 android:text="@string/defaultNeutral" />
 
-
                             <ImageView
                                 android:id="@+id/imageView8"
                                 android:layout_width="20dp"
@@ -743,9 +743,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-
                 app:layout_constraintTop_toBottomOf="@+id/restaurantInfoSection1">
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1030,7 +1028,6 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 
 </android.support.constraint.ConstraintLayout>
