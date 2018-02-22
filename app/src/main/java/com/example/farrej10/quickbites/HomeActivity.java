@@ -100,11 +100,11 @@ public class HomeActivity extends AppCompatActivity {
     {
 
         Intent restuarantDetailed = new Intent(this, detailedRestaurant.class);
-        TextView title = findViewById(R.id.Title);
-        TextView description = findViewById(R.id.description);
-        TextView ratingHappy = findViewById(R.id.happyNum);
-        TextView ratingNeutral = findViewById(R.id.neutralNum);
-        TextView ratingSad = findViewById(R.id.sadNum);
+        TextView title = findViewById(R.id.Title2);
+        TextView description = findViewById(R.id.description2);
+        TextView ratingHappy = findViewById(R.id.happyNum2);
+        TextView ratingNeutral = findViewById(R.id.neutralNum2);
+        TextView ratingSad = findViewById(R.id.sadNum2);
 
         String restTitle = title.getText().toString();
         String restDescription = description.getText().toString();
