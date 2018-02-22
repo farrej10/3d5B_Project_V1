@@ -40,9 +40,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/editText"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logonobackground"
-                android:clickable="true"
-                android:onClick="returnHome" />
+                app:srcCompat="@drawable/logonobackground" />
 
             <EditText
                 android:id="@+id/editText"
